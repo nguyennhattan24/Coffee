@@ -8,9 +8,10 @@ import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import { getOrder } from '../src/API/Api'
 import { useDispatch, useSelector } from "react-redux";
-
+import { SwipeListView } from 'react-native-swipe-list-view';
 
 const DatMon = () => {
+
     const [productSelected, setProductSelected] = useState([])
     const dispatch = useDispatch();
     const data = useSelector((store) => store.cartReducer.cart);
@@ -26,13 +27,13 @@ const DatMon = () => {
     const Select = () => {
         setSelect(!select);
     };
+    const onRemoveItem = (item) => () => dispatch({ type: 'REMOVE_ITEM', data: item })
     const [checkedSize, setCheckedSize] = useState();
     const [order, setOrder] = useState()
     useEffect(() => {
         const getApiOrder = async () => {
             const result = await getOrder()
             setOrder(result.data.data)
-
         }
         getApiOrder()
     }, [])
@@ -43,7 +44,35 @@ const DatMon = () => {
     const addFavorite = () => {
         setHeart(!heart);
     };
-
+    const renderHiddenItem = ({ item }) => (
+        <View style={styles.rowBack}>
+            <TouchableOpacity style={[{ backgroundColor: 'grey' }, styles.hiddenBt]} onPress={() => {
+                setModalVisible(!modalVisible)
+                setProductSelected(item)
+            }}>
+                <Image
+                    source={require('../src/Icon/pencil.png')}
+                    style={{
+                        width: 30,
+                        height: 30,
+                        tintColor: 'white'
+                    }}
+                />
+                <Text style={styles.backTextWhite}>CHỈNH SỬA</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[{ backgroundColor: 'red' }, styles.hiddenBt]} onPress={onRemoveItem(item)}>
+                <Image
+                    source={require('../src/Icon/trash.png')}
+                    style={{
+                        width: 28,
+                        height: 28,
+                        tintColor: 'white'
+                    }}
+                />
+                <Text style={styles.backTextWhite}>BỎ CHỌN</Text>
+            </TouchableOpacity>
+        </View>
+    );
     const renderItem = ({ item }) => (
         <View>
             <TouchableOpacity style={{ flexDirection: 'row', alignItems: 'center', width: '95%', height: 150, alignSelf: 'center', backgroundColor: 'white', marginBottom: 10, borderBottomColor: 'silver', borderBottomWidth: 0.2, borderRadius: 10 }}
@@ -299,14 +328,17 @@ const DatMon = () => {
                 <TouchableOpacity style={{ width: '100%', height: 50, alignItems: 'center', flexDirection: 'row-reverse', right: 10 }} onPress={() => setModalVisible2(false)} >
                     <Ionicons name={'close-outline'} size={35} />
                 </TouchableOpacity>
-                <FlatList
+                <SwipeListView
                     data={data}
-                    style={{ height: 600, width: '100%', backgroundColor: '#f2f2f2'}}
+                    renderHiddenItem={renderHiddenItem}
+                    leftOpenValue={0}
+                    rightOpenValue={-200}
+                    style={{ height: 600, width: '100%', backgroundColor: '#f2f2f2' }}
                     keyExtractor={item => item._id?.toString()}
                     renderItem={({ item }) => {
                         return (
-                            <View style={{ width: '100%', height: 60, alignItems: "center", backgroundColor: 'white' }}>
-                                <TouchableOpacity style={{ width: '100%', height: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ width: '100%', height: 100, alignItems: "center", backgroundColor: 'white', borderBottomWidth: 1, borderBottomColor: '#F2F2F2' }}>
+                                <View style={{ width: '100%', height: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                     <Image
                                         source={require('../src/Icon/pencil.png')}
                                         style={{
@@ -315,21 +347,21 @@ const DatMon = () => {
                                             tintColor: 'grey'
                                         }}
                                     />
-                                    <View  style={{ width: '85%', height: 60, marginLeft: 20, borderBottomWidth: 1, borderBottomColor: '#F2F2F2' }}>
+                                    <View style={{ width: '85%', height: 60, marginLeft: 20, }}>
                                         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                             <View style={{ flexDirection: 'row' }}>
                                                 <Text style={{ fontWeight: 'bold', fontSize: 18, marginRight: 5 }}>{item?.quantity}x</Text>
-                                                <Text style={{ fontWeight: 'bold',width:200,height:25, fontSize: 18, marginRight: 5 }}>{item?.product_name}</Text>
+                                                <Text style={{ fontWeight: 'bold', width: 200, height: 25, fontSize: 18, marginRight: 5 }}>{item?.product_name}</Text>
                                             </View>
                                             <Text style={{ fontSize: 18, marginRight: 5 }}>{item?.price * item?.quantity}đ</Text>
                                         </View>
                                         <Text style={{ fontSize: 15, color: 'grey', }}></Text>
                                     </View>
-                                </TouchableOpacity>
+                                </View>
                             </View>
                         )
                     }}
-                    ListHeaderComponent={({item}) => {
+                    ListHeaderComponent={({ item }) => {
                         return (
                             <View>
                                 <View style={{ marginTop: 15, height: 70, backgroundColor: 'white', borderBottomColor: 'grey', borderBottomWidth: 0.5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
@@ -384,7 +416,7 @@ const DatMon = () => {
                     }}
 
 
-                    ListFooterComponent={({item}) => {
+                    ListFooterComponent={({ item }) => {
                         return (
                             <View>
                                 <View style={{ marginTop: 15, height: 70, backgroundColor: 'white', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
@@ -427,7 +459,7 @@ const DatMon = () => {
                                     <Text style={{ color: 'blue', fontSize: 16 }}>Bấm để chọn phương thức thanh toán</Text>
                                     <Ionicons name={'chevron-forward-outline'} size={25} color={'silver'} />
                                 </TouchableOpacity>
-                                <TouchableOpacity style={{ backgroundColor: 'white', marginTop: 15, flexDirection: 'row', height: 60, alignItems: 'center', paddingHorizontal: 10, marginBottom: 20 }}  onPress={onRemoveAll}>
+                                <TouchableOpacity style={{ backgroundColor: 'white', marginTop: 15, flexDirection: 'row', height: 60, alignItems: 'center', paddingHorizontal: 10, marginBottom: 20 }} onPress={onRemoveAll}>
                                     <MaterialCommunityIcons name={'trash-can'} size={25} color={'red'} />
                                     <Text style={{ marginLeft: 15, color: 'red', fontSize: 16 }}>Xóa đơn hàng</Text>
                                 </TouchableOpacity>
@@ -492,4 +524,32 @@ const styles = StyleSheet.create({
     addPrice: {
         marginRight: '7%'
     },
+    backTextWhite: {
+        color: '#FFF',
+        fontSize: 10,
+        fontWeight: 'bold'
+    },
+    rowFront: {
+        alignItems: 'center',
+        backgroundColor: '#f2f2f2',
+        borderBottomColor: 'black',
+        borderBottomWidth: 1,
+        justifyContent: 'center',
+        height: 50,
+    },
+    rowBack: {
+        alignItems: 'center',
+        backgroundColor: '#f2f2f2',
+        height: 100,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+    },
+    hiddenBt: {
+        width: 75,
+        height: 75,
+        marginHorizontal: 10,
+        borderRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 })

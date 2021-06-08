@@ -7,7 +7,7 @@ import Navi from './Navigation/Navi'
 import { persistStore, persistReducer } from 'redux-persist'
 import { PersistGate } from 'redux-persist/es/integration/react';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import BU from './Backup'
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage
