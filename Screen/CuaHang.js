@@ -63,15 +63,17 @@ const CuaHang = () => {
                         placeholder="Nhập tên đườn..."
                     />
                 </View>
-                <Image
-                    source={require('../src/Icon/map.png')}
-                    style={{
-                        width: 30,
-                        height: 30,
-                        marginLeft: 8
-                    }}
-                />
-                <Text style={{ fontWeight: 'bold', marginLeft: 8 }}>BẢN ĐỒ</Text>
+                <TouchableOpacity style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                    <Image
+                        source={require('../src/Icon/map.png')}
+                        style={{
+                            width: 30,
+                            height: 30,
+                            marginLeft: 8
+                        }}
+                    />
+                    <Text style={{ fontWeight: 'bold', marginLeft: 8 }}>BẢN ĐỒ</Text>
+                </TouchableOpacity>
             </View>
             <FlatList
                 ListHeaderComponent={() =>

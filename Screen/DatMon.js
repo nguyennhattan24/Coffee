@@ -6,12 +6,11 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import { getOrder } from '../src/API/Api'
+import { getOrder,getCate } from '../src/API/Api'
 import { useDispatch, useSelector } from "react-redux";
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 const DatMon = () => {
-
     const [productSelected, setProductSelected] = useState([])
     const dispatch = useDispatch();
     const data = useSelector((store) => store.cartReducer.cart);
@@ -278,7 +277,7 @@ const DatMon = () => {
                                     <TouchableOpacity>
                                         <Ionicons name={'remove-circle-outline'} color={'#fe8f01'} size={40} />
                                     </TouchableOpacity>
-                                    <Text style={{ width: 50, textAlign: 'center', fontSize: 20 }}>1</Text>
+                                    <Text style={{ width: 50, textAlign: 'center', fontSize: 20 }}>{productSelected?.quantity}</Text>
                                     <TouchableOpacity>
                                         <Ionicons name={'add-circle-outline'} color={'#fe8f01'} size={40} />
                                     </TouchableOpacity>
