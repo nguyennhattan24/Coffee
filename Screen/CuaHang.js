@@ -63,7 +63,7 @@ const CuaHang = () => {
                         placeholder="Nhập tên đườn..."
                     />
                 </View>
-                <TouchableOpacity style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                <TouchableOpacity style={{justifyContent:'center',alignItems:'center',flexDirection:'row'}}>
                     <Image
                         source={require('../src/Icon/map.png')}
                         style={{
