@@ -13,6 +13,7 @@ import TichDiem3 from '../Screen/TichDiem3'
 import Khac from '../Screen/Khac'
 import Favorite from '../Screen/Favorite'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import RNBootSplash from "react-native-bootsplash";
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 function MyTabs() {
@@ -105,7 +106,7 @@ function MyTabs() {
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer onReady={() => RNBootSplash.hide()}>
       <Stack.Navigator headerMode={false}>
         <Stack.Screen name="MyTabs" component={MyTabs} />
         <Stack.Screen name="TrangChu" component={TrangChu} />
