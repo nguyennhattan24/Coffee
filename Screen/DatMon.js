@@ -6,9 +6,10 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import { getOrder,getCate } from '../src/API/Api'
+import { getOrder, getCate } from '../src/API/Api'
 import { useDispatch, useSelector } from "react-redux";
 import { SwipeListView } from 'react-native-swipe-list-view';
+import StickyHeaderFlatlist from 'react-native-sticky-header-flatlist';
 
 const DatMon = () => {
     const [productSelected, setProductSelected] = useState([])
@@ -307,7 +308,7 @@ const DatMon = () => {
                 </Modal>
             </View>
             {/* Detail outside */}
-            <TouchableOpacity style={{ marginTop: 600 }} onPress={() => { setModalVisible2(true) }}>
+            <TouchableOpacity style={{ marginTop:590 }} onPress={() => { setModalVisible2(true) }}>
                 <LinearGradient colors={['#5e5e5e', '#fe8f01', '#5e5e5e']} style={{ height: 80, flexDirection: 'row', width: '95%', justifyContent: 'space-between', alignItems: 'center', padding: 10, borderRadius: 15, alignSelf: 'center' }} start={{ x: -0.5, y: 0 }} end={{ x: 2, y: 0 }} >
                     <View>
                         <Text style={{ color: 'white', fontSize: 17 }}>1 món trong giỏ hàng</Text>

@@ -5,20 +5,27 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { useNavigation } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import Header from './header'
-import { getStore } from '../src/API/Api'
+import Header from './header';
+import { useDispatch, useSelector } from "react-redux";
+import {getProductStore } from '../reducer/storeReducer';
+import { getAllStore } from '../src/API/Api'
 
 const CuaHang = () => {
     const navigation = useNavigation();
-    const [store, setStore] = useState()
+    // const [store, setStore] = useState()
     const [idStore, setIdStore] = useState()
+    // useEffect(() => {
+    //     const getApiStore = async () => {
+    //         const result = await getStore()
+    //         setStore(result.data)
+    //     }
+    //     getApiStore()
+    // }, [])
+    const dispatch = useDispatch();
+    const productStore = useSelector((store) => store.storeReducer.productsStore);
     useEffect(() => {
-        const getApiStore = async () => {
-            const result = await getStore()
-            setStore(result.data)
-        }
-        getApiStore()
-    }, [])
+        dispatch(getProductStore());
+      }, [])
     const [modalVisible, setModalVisible] = useState(false);
     const renderItem = ({ item }) => (
         <View>
@@ -72,7 +79,7 @@ const CuaHang = () => {
                             marginLeft: 8
                         }}
                     />
-                    <Text style={{ fontWeight: 'bold', marginLeft: 8 }}>BẢN ĐỒ</Text>
+                    <Text style={{ fontWeight: 'bold', marginRight: 8 }}>BẢN ĐỒ</Text>
                 </TouchableOpacity>
             </View>
             <FlatList
@@ -82,7 +89,7 @@ const CuaHang = () => {
                         <Text style={{ marginLeft: 5, color: '#2e2e2e' }}>CÁC CỬA HÀNG KHÁC</Text>
                     </View>
                 }
-                data={store}
+                data={productStore}
                 showsVerticalScrollIndicator={false}
                 renderItem={renderItem}
                 keyExtractor={item => item.id?.toString()}
@@ -94,7 +101,7 @@ const CuaHang = () => {
                 <View>
                     <ScrollView style={{ position: 'absolute', height: 750, width: '100%' }} showsVerticalScrollIndicator={false}>
                         {
-                            store?.map((item, index) => {
+                            productStore?.map((item, index) => {
                                 if (item.id == idStore)
                                     return (
                                         <View key={index}>
