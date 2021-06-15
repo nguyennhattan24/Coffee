@@ -12,6 +12,26 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 import StickyHeaderFlatlist from 'react-native-sticky-header-flatlist';
 
 const DatMon = () => {
+    const [order, setOrder] = useState()
+    const [cate, setCate] = useState();
+    useEffect(() => {
+        const getApiOrder = async () => {
+            const result = await getOrder()
+            setOrder(result.data.data)
+        };
+        const getCategoryIds = async () => {
+            const result = await getCate();
+            setCate(result.data.map(e => e.id));
+        };
+        getCategoryIds();
+        getApiOrder()
+    }, [])
+    const groupData = cate?.map(e => ({
+        category: e,
+        dataList: order?.filter(el => el.categ_id.includes(e)),
+    }));
+    console.log(groupData);
+
     const [productSelected, setProductSelected] = useState([])
     const dispatch = useDispatch();
     const data = useSelector((store) => store.cartReducer.cart);
@@ -29,14 +49,7 @@ const DatMon = () => {
     };
     const onRemoveItem = (item) => () => dispatch({ type: 'REMOVE_ITEM', data: item })
     const [checkedSize, setCheckedSize] = useState();
-    const [order, setOrder] = useState()
-    useEffect(() => {
-        const getApiOrder = async () => {
-            const result = await getOrder()
-            setOrder(result.data.data)
-        }
-        getApiOrder()
-    }, [])
+    
     const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
     const [modalVisible2, setModalVisible2] = useState(false);
@@ -133,6 +146,7 @@ const DatMon = () => {
                     showsVerticalScrollIndicator={false}
                     style={{ height: 555, }}
                     keyExtractor={item => item._id?.toString()}
+                    // keyExtractor={(_, i) => i + ""}
                     renderItem={renderItem}
                 />
                 <Modal visible={modalVisible} animationType={'slide'}>
@@ -308,7 +322,7 @@ const DatMon = () => {
                 </Modal>
             </View>
             {/* Detail outside */}
-            <TouchableOpacity style={{ marginTop:590 }} onPress={() => { setModalVisible2(true) }}>
+            <TouchableOpacity style={{ marginTop: 595 }} onPress={() => { setModalVisible2(true) }}>
                 <LinearGradient colors={['#5e5e5e', '#fe8f01', '#5e5e5e']} style={{ height: 80, flexDirection: 'row', width: '95%', justifyContent: 'space-between', alignItems: 'center', padding: 10, borderRadius: 15, alignSelf: 'center' }} start={{ x: -0.5, y: 0 }} end={{ x: 2, y: 0 }} >
                     <View>
                         <Text style={{ color: 'white', fontSize: 17 }}>1 món trong giỏ hàng</Text>

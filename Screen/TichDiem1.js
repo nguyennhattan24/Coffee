@@ -5,19 +5,19 @@ const DATATICKET =[
     {
         id:1,
         name:'- Giảm 35% cho đơn hàng từ 5 món, tối đa 59K...',
-        Photo: 'https://scontent.fhan5-4.fna.fbcdn.net/v/t1.15752-9/178868490_3584681758303160_7470825245228557689_n.png?_nc_cat=104&ccb=1-3&_nc_sid=ae9488&_nc_ohc=2MqS7PUOuLsAX_Ua5lG&_nc_ht=scontent.fhan5-4.fna&oh=92b35a208acd2620266b69cb4a6cd5f6&oe=60B30AB7',
+        Photo: 'https://stc.shopiness.vn/deal/2019/01/14/2/9/a/6/1547454256621_540.png',
         Date:'Hết hạn 31/05/2021',
     },
     {
         id:2,
         name:'Giảm 30k cho đơn hàng 149k...',
-        Photo: 'https://scontent.fhan5-6.fna.fbcdn.net/v/t1.15752-9/180948050_2872012936256969_3115294644303545894_n.png?_nc_cat=105&ccb=1-3&_nc_sid=ae9488&_nc_ohc=IBsjuWSiaW0AX9fWLrY&_nc_ht=scontent.fhan5-6.fna&oh=1bb362a965298bd74eba9dace0dc2157&oe=60B3B33C',
+        Photo: 'https://stc.shopiness.vn/deal/2019/01/14/2/9/a/6/1547454256621_540.png',
         Date:'Hết hạn 31/05/2021',
     },
     {
         id:3,
         name:'Combo 1 Cà phê Việt Nam size L và 2 bánh mì...',
-        Photo: 'https://scontent.fhan5-4.fna.fbcdn.net/v/t1.15752-9/181537485_938366606919425_6519365653654971292_n.png?_nc_cat=104&ccb=1-3&_nc_sid=ae9488&_nc_ohc=MKFYn8ExwSgAX_tYhDo&_nc_ht=scontent.fhan5-4.fna&oh=c6b8207bb1a20c46cea581ad47b0d616&oe=60B46F6B',
+        Photo: 'https://stc.shopiness.vn/deal/2019/01/14/2/9/a/6/1547454256621_540.png',
         Date:'Hết hạn 31/05/2021',
     },
 ]
@@ -27,21 +27,21 @@ const DATAEXCHANGE=[
         name:'MYTOUR',
         script:'Ưu đãi 15% đặt phòng khách sạn tại Mytour',
         Bean:'59',
-        ExchageImg:'https://scontent.fhan5-4.fna.fbcdn.net/v/t1.15752-9/181537485_938366606919425_6519365653654971292_n.png?_nc_cat=104&ccb=1-3&_nc_sid=ae9488&_nc_ohc=MKFYn8ExwSgAX_tYhDo&_nc_ht=scontent.fhan5-4.fna&oh=c6b8207bb1a20c46cea581ad47b0d616&oe=60B46F6B'
+        ExchageImg:'https://stc.shopiness.vn/deal/2019/01/14/2/9/a/6/1547454256621_540.png'
     },
     {
         id:2,
         name:'NHA KHOA KIM',
         script:'Ưu đãi 50% dịch vụ tổng quát tại Nha Khoa Kim',
         Bean:'99',
-        ExchageImg:'https://scontent.fhan5-4.fna.fbcdn.net/v/t1.15752-9/181537485_938366606919425_6519365653654971292_n.png?_nc_cat=104&ccb=1-3&_nc_sid=ae9488&_nc_ohc=MKFYn8ExwSgAX_tYhDo&_nc_ht=scontent.fhan5-4.fna&oh=c6b8207bb1a20c46cea581ad47b0d616&oe=60B46F6B'
+        ExchageImg:'https://stc.shopiness.vn/deal/2019/01/14/2/9/a/6/1547454256621_540.png'
     },
     {
         id:3,
         name:'NHA KHOA KIM',
         script:'Ưu đãi 25% dịch vụ thẩm mỹ tại Nha Khoa Kim',
         Bean:'99',
-        ExchageImg:'https://scontent.fhan5-4.fna.fbcdn.net/v/t1.15752-9/181537485_938366606919425_6519365653654971292_n.png?_nc_cat=104&ccb=1-3&_nc_sid=ae9488&_nc_ohc=MKFYn8ExwSgAX_tYhDo&_nc_ht=scontent.fhan5-4.fna&oh=c6b8207bb1a20c46cea581ad47b0d616&oe=60B46F6B'
+        ExchageImg:'https://stc.shopiness.vn/deal/2019/01/14/2/9/a/6/1547454256621_540.png'
     },
 ]
 const TichDiem1 = () => {

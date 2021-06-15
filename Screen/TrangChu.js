@@ -3,7 +3,9 @@ import { StyleSheet, Text, View, Image, ScrollView,TouchableHighlight,TouchableO
 import LinearGradient from 'react-native-linear-gradient';
 import Swiper from 'react-native-swiper'
 import Header from './header'
+import { useDispatch, useSelector } from "react-redux";
 const TrangChu = ({navigation}) => {
+    const token = useSelector((store) => store.authReducer.token);
     return (
         <View>
             <Header/> 

@@ -70,7 +70,7 @@ const CuaHang = () => {
                         placeholder="Nhập tên đườn..."
                     />
                 </View>
-                <TouchableOpacity style={{justifyContent:'center',alignItems:'center',flexDirection:'row'}}>
+                <TouchableOpacity style={{justifyContent:'center',alignItems:'center',flexDirection:'row'}} onPress={() => navigation.navigate('Map')}>
                     <Image
                         source={require('../src/Icon/map.png')}
                         style={{

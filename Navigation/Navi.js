@@ -11,6 +11,7 @@ import TichDiem1 from '../Screen/TichDiem1'
 import TichDiem2 from '../Screen/TichDiem2'
 import TichDiem3 from '../Screen/TichDiem3'
 import Khac from '../Screen/Khac'
+import Map from '../Screen/Map'
 import Favorite from '../Screen/Favorite'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import RNBootSplash from "react-native-bootsplash";
@@ -118,6 +119,7 @@ export default function App() {
         <Stack.Screen name="TichDiem3" component={TichDiem3} />
         <Stack.Screen name="Khac" component={Khac} />
         <Stack.Screen name="Favorite" component={Favorite}/>
+        <Stack.Screen name="Map" component={Map}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
